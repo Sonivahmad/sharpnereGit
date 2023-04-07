@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JPG to PNG Converter</title>
+    <style>
+      body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #0074D9;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 18px;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #2ECC40;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#preview-container {
+  display: none;
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+#preview-img {
+  max-width:70%;
+  height: auto;
+}
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>JPG to PNG Converter</h1>
+    </header>
+    <main>
+      <form>
+        <label for="file-input">Select a JPG file:</label>
+        <input type="file" id="file-input" accept="image/jpeg">
+        <button type="button" id="convert-btn">Convert to PNG</button>
+      </form>
+      <div id="preview-container">
+        <h2>Preview:</h2>
+        <img id="preview-img" src="#" alt="Converted image preview">
+      </div>
+    </main>
+    <script>
+      const fileInput = document.getElementById("file-input");
+const convertBtn = document.getElementById("convert-btn");
+const previewContainer = document.getElementById("preview-container");
+const previewImg = document.getElementById("preview-img");
+
+convertBtn.addEventListener("click", () => {
+  if (fileInput.files && fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewImg.src = e.target.result;
+      previewContainer.style.display = "block";
+    };
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+});
+
+    </script>
+  </body>
+</html>
